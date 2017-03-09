@@ -12,11 +12,14 @@ var lis = function(){
 	}
 
 	for (var i = 1; i < arr.length; i++) {
+		var temp=[];
 		for (var j = 0; j < i; j++) {
 			if(arr[j]<arr[i] && l[i]<(l[j]+1)){
 				l[i]=l[j]+1;
+				//temp.push(arr[j]);
 			}
 		}
+		//console.log(temp)
 	}
 	return l;
 }
