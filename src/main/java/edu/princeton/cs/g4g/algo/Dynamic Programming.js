@@ -46,3 +46,7 @@ var fib2 = function(n){
 	}
 	return a[n];
 }
+
+/*
+*Optimal Substructure Property
+*/
