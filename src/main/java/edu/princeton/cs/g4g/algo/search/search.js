@@ -5,7 +5,7 @@ Jump search
 var arr= [0, 1, 1, 2, 3, 5, 8, 13, 21,34, 55, 89, 144, 233, 377, 610];
 
 var jSrch= function(n){
-	var step = parseInt(Math.sqrt(arr.length)),pre;
+	var step = parseInt(Math.sqrt(arr.length)),pre=0;
 	var l =arr.length;
 	while(n>arr[Math.min(step,l)-1]){
 		pre= step;
