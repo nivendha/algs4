@@ -60,3 +60,50 @@ function main(n){
 	}
 }
 
+//http://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
+
+var arr = [1, 4, 2, 10, 23, 3, 1, 0, 20];
+function main2(k){
+	var max=-1;
+	for(var i=0;(i+k)<arr.length;i++){
+		var count=k,tmp=0;
+		while(count>0){
+			tmp+=arr[i+count];
+			count--;
+		}
+		if(tmp>max){
+			max=tmp;
+		}
+	}
+	return max;
+}
+
+//http://www.geeksforgeeks.org/maximum-value-array-m-range-increment-operations/
+
+function m2(){
+	var a = [1,0,2], b = [2,0, 3];
+	// value of k to be added at each operation
+	var k = [603, 286, 882];
+	var n = 4, m = 3
+	//
+	var MAX=0,j=k.length;
+	while(j-->0){
+		MAX = Math.max(MAX,k[j]);
+	}
+
+	var aux=[];
+	for (var i = 0; i <MAX+1 ; i++) {
+		aux[i]=0;
+	}
+
+	for(var i=0;i<a.length;i++){
+		aux[i]+=k[i];
+		aux[i+1]-=k[i];
+	}
+	var c=0,bigNum=0;
+	for(var i=0;i<MAX+1;i++){
+		c+=aux[i];
+		bigNum= Math.max(c,bigNum)
+	}
+	return bigNum;
+}
