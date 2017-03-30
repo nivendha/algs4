@@ -81,29 +81,37 @@ function main2(k){
 //http://www.geeksforgeeks.org/maximum-value-array-m-range-increment-operations/
 
 function m2(){
-	var a = [1,0,2], b = [2,0, 3];
+	var a = [1,0,3], b = [2,0, 3];
 	// value of k to be added at each operation
 	var k = [603, 286, 882];
-	var n = 4, m = 3
+	var n = 5, m = 3
 	//
-	var MAX=0,j=k.length;
-	while(j-->0){
-		MAX = Math.max(MAX,k[j]);
-	}
-
 	var aux=[];
-	for (var i = 0; i <MAX+1 ; i++) {
+	for (var i = 0; i <(n+1) ; i++) {
 		aux[i]=0;
 	}
 
-	for(var i=0;i<a.length;i++){
-		aux[i]+=k[i];
-		aux[i+1]-=k[i];
+	for(var i=0;i<m;i++){
+		aux[a[i]]+=k[i];
+		aux[b[i]+1]-=k[i];
 	}
 	var c=0,bigNum=0;
-	for(var i=0;i<MAX+1;i++){
+	for(var i=0;i<n;i++){
 		c+=aux[i];
 		bigNum= Math.max(c,bigNum)
 	}
 	return bigNum;
+}
+
+//http://www.geeksforgeeks.org/largest-permutation-k-swaps/
+
+NEED TO DO
+
+//http://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
+
+var arr= [1, 2, 3, 5, 4, 7, 10];
+
+//seperate the odd and even numbers
+for (var i = 0; i < arr.length; i++) {
+	arr[i]
 }
