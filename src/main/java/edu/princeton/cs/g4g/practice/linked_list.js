@@ -63,8 +63,8 @@ var List = function(){
 }
 
 var list = new List();
-for (var i = 0; i <10 ; i++) {
-	list.addNode(i);
+for (var i = 0; i <=10 ; i++) {
+	i<5?list.addNode(i):list.addNode(10-i);
 }
 //search in Linked list
 function search (list,val){
@@ -112,14 +112,91 @@ function swap (list,j){
 
 //reverse all node in LL
 function reverse (list){
-	debugger;
-	var previous = list.head;
-	var curent = list.head.next;
-	
-	while(curent.next!=null){
-		var next = curent.next;
+	var previous = null;
+	var curent = list.head;
+	var next = curent.next;
+
+	while(next!=null){
 		curent.next = previous;
 		previous = curent;
 		curent = next;
+		next = next.next;
 	}
+	//debugger;
+	curent.next = previous;
+	list.head = curent;
+}
+
+//reverse recursively
+function repeat(node,list){
+	if(node.next!==null){
+		var curent = node;
+		var next = repeat(curent.next,list);
+		next.next = curent;
+	}else{
+		list.head = node;
+	}
+	return node;
+}
+
+function recursiveReverse (list){
+	var curent = list.head;
+	var head = repeat(curent,list);
+	head.next = null;
+}
+
+
+//palindrome check of LL
+function palindrome(list){
+	var size = 0;
+	var curent = list.head;
+	while(curent!=null){
+		size++;
+		curent = curent.next;
+	}
+	debugger;
+	var curent = list.head;
+	var centre = parseInt(size/2);
+	var curent = list.head;
+	while(centre>0){
+		centre--;
+		curent = curent.next;
+	}
+	//reverse
+	var head = curent;
+	debugger;
+	var previous = curent;
+	var node = previous.next;
+	var next = node.next;
+	while(next!=null){
+		node.next = previous;
+		previous = node;
+		node = next;
+		next = next.next;
+	}
+	debugger;
+	node.next = previous;
+
+	var end = head.next;
+	head.next = node;
+	end.next = null;
+	debugger;
+	//check palindrome
+	var start1 = list.head;
+	var start2 = head.next;
+
+	centre = parseInt(size/2);
+	var isPalindrome = true;
+
+	while(centre>0){
+		if(start1.val!==start2.val){
+			isPalindrome = false
+			return isPalindrome;
+		}
+		start1 = start1.next;
+		start2 = start2.next;
+		centre--;
+	}
+
+	return isPalindrome;
 }

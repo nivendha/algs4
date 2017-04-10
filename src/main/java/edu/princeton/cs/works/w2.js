@@ -82,6 +82,7 @@ var queeArr = function(size){
 	this.tail = 0;
 	this.end = size;
 }
+
 queeArr.prototype.enquee=function(val){
 	if(this.tail<this.end){
 		this.arr[this.tail++] = val;
@@ -91,7 +92,13 @@ queeArr.prototype.enquee=function(val){
 queeArr.prototype.dequee = function(){
 	if(this.head < this.tail){
 		var val = this.arr[this.head];
-		this.arr[this.head++] = null;
+		var j=this.head;
+		while(j<this.tail-1){
+			this.arr[j]=this.arr[j+1];
+			j++
+		}
+		this.tail--;
+		this.arr[this.tail]=null;
 		return val;
 	}
 }
