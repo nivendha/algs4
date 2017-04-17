@@ -57,9 +57,6 @@ var List = function(){
 			curent = curent.next;
 		}
 	}
-	this.next = function(){
-		console.log(this);
-	}
 }
 
 var list = new List();
