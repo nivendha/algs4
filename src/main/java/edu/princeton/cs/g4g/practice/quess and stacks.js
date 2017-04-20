@@ -123,7 +123,9 @@ var ListQuee = function(){
 			return node.val;
 		}
 	}
-
+	this.isEmpty = function(){
+		return this.head==null?true:false;
+	}
 	this.show =function(){
 		if(this.head!==null){
 			var current = this.head;
@@ -192,7 +194,6 @@ function queeTostack (quee){
 function reverseStackWithTemp (stack){
 	var temp = new ListStack();
 	copyStack(stack,temp);
-	debugger;
 	rStack(temp,stack);
 	return stack;
 }
@@ -205,10 +206,38 @@ function copyStack(stack,temp){
 	}
 }
 function rStack(stack,temp){
-	debugger;
 	if(stack.peek()!=null){
 		var val = stack.pop();
 		rStack(stack,temp);
 		temp.push(val);
+	}
+}
+
+function pushToBottom (val,stack){
+	if(stack.peek()===null){
+		stack.push(val);
+	}else{
+		var item = stack.pop();
+		pushToBottom(val,stack);
+		stack.push(item);
+	}
+}
+//reverse a stack
+function reverseStack (stack){
+	var val ;
+	if(stack.peek()!=null){
+		val = stack.pop();
+		reverseStack(stack);
+		pushToBottom (val,stack);
+		return stack;
+	}
+}
+//reverse a quee
+function reverseQuee (quee){
+	var val;
+	if(!quee.isEmpty()){
+		val = quee.dequee();
+		reverseQuee (quee);
+		quee.enquee(val);
 	}
 }
