@@ -69,3 +69,47 @@ var List = function(){
 		}
 	}
 }
+
+var list = new List();
+for (var i = 0; i <=10 ; i++) {
+	list.addNode(parseInt(Math.random()*100));
+}
+
+
+function swapNodes(previous,node1){
+	var node2 = node1.next;
+	node1.next = node2.next;
+	previous.next = node2;
+	node2.next = node1;
+}
+
+function sort(list){
+	if(list){
+		var l =list;
+		if(l.head!==null){
+
+			//add tempNode to start
+			var tempNode = {
+				val:'temp',
+				next:l.head
+			}
+			l.head = tempNode;
+
+			//insertion sort
+			var start = tempNode.next;
+			tempNode.next = start.next;
+			start.next = tempNode;
+
+			l.head = start;
+			//begin sort now
+			var curent = tempNode.next;
+			var node1 = tempNode;
+			var previous = start;
+
+			while(curent!=null){
+				
+				curent = curent.next;
+			}
+		}
+	}
+}

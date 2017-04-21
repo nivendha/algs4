@@ -24,9 +24,6 @@ function swap(main,str){
 	}
 		//now we have "D"->main and "O"->str
 		//we return an array of all its combinations
-
-	debugger;
-
 	var newResults = new Array();
 	for (var j=0;j<results.length;j++){
 		
