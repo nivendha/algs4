@@ -48,9 +48,20 @@ function bubbleUp(heap,i){
 }
 
 function deleteHeap(heap,val){
-	var node;
-	node = getNode(heap,val);
-	//return node;
+	var node,nodeObject;
+	nodeObject = getNode(heap,val);
+	debugger;
+	if(nodeObject===undefined){
+		//nothing found
+		return;
+	}
+
+	if(nodeObject.direction === 'right'){
+		node = nodeObject.parent.right;
+	}else{
+		node = nodeObject.parent.left;
+	}
+
 	var rightMostNode;
 	var temp = node;
 	var parentTemp;
@@ -61,15 +72,27 @@ function deleteHeap(heap,val){
 	}
 	rightMostNodeParent = parentTemp;
 
-	bubbleDown(heap,val,rightMostNode);
+	bubbleDown(heap,nodeObject.parent,nodeObject.direction,rightMostNodeParent);
 }
 
-function getNode(node,parent,val){
+function getNode(node,val){
 	var done,child;
-	//var parent;
+	debugger;
+	if((node.right && node.right.val===val) || (node.left && node.left.val===val)){
+		if(node.right.val==val)
+			{	
+				return{
+					parent:node,
+					direction:'right'
+				}
 
-	if(node.val===val){
-		return node;
+			}
+		else{
+			return{
+				parent:node,
+				direction:'left'
+				}
+			}
 	}else{
 		if(done===undefined && node.right){
 			child =node.right;
@@ -84,31 +107,9 @@ function getNode(node,parent,val){
 	return done;
 }
 
-function bubbleDown(heap,val,replaceNodeParent){
+function bubbleDown(heap,parentNode,direction,replaceNodeParent){
 	debugger;
 	
-	var 
+	
 }
 
-/*
-function delete(heap,val){
-	var index;
-	for(var i=0;i<heap.length;i++){
-		if(heap[i]===val){
-			index = i;
-		}
-	}
-
-	if(index){
-		heap[index] = heap[heap.length-1];
-		bubbleDown(heap,index);
-	}
-}
-
-function bubbleDown(heap,i){
-	var rIndex = (i*2)+1;
-	var lIndex = (i*2);
-
-
-}
-*/

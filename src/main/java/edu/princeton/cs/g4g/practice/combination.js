@@ -4,6 +4,7 @@
 function getCominations (str,count){
 	var op=[];
 	debugger;
+	
 	for(var i=0;i<str.length;i++){
 		var charStart = str[i];
 		var temp = charStart;
@@ -26,6 +27,7 @@ function getCominations (str,count){
 function getCominationsRepeat (str,count){
 	var op=[];
 	debugger;
+
 	for(var i=0;i<str.length;i++){
 		var charStart = str[i];
 		var temp = charStart;
