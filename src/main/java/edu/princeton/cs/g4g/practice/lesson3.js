@@ -82,7 +82,7 @@ function sort(list){
 		var l =list;
 		if(l.head!==null){
 
-			//add tempNode to start
+			//add tempNode to end
 			var tempNode = {
 				val:'temp',
 				next:null
