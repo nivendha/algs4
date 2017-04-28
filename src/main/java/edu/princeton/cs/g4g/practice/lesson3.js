@@ -75,13 +75,7 @@ for (var i = 0; i <=10 ; i++) {
 	list.addNode(parseInt(Math.random()*100));
 }
 
-
-function swapNodes(previous,node1){
-	var node2 = node1.next;
-	node1.next = node2.next;
-	previous.next = node2;
-	node2.next = node1;
-}
+// sort a linked list
 
 function sort(list){
 	if(list){
@@ -91,25 +85,54 @@ function sort(list){
 			//add tempNode to start
 			var tempNode = {
 				val:'temp',
-				next:l.head
+				next:null
 			}
-			l.head = tempNode;
-
-			//insertion sort
-			var start = tempNode.next;
-			tempNode.next = start.next;
-			start.next = tempNode;
-
-			l.head = start;
-			//begin sort now
-			var curent = tempNode.next;
-			var node1 = tempNode;
-			var previous = start;
-
-			while(curent!=null){
-				
+			var curent = l.head;
+			while(curent.next!=null){
 				curent = curent.next;
 			}
+			//add a temp node to the end as marker
+			curent.next = tempNode;
+
+			//move the first noode behind the temp node
+
+			var head = l.head;
+			l.head = head.next;
+
+			head.next =null;
+			tempNode.next = head;
+
+			//begin insrt sort
+			var curent = l.head;
+			while(curent && curent.val !== 'temp'){
+				var sortHead = tempNode.next;
+				var parent = tempNode;
+				var next = curent.next;
+				var notInsertFlag = true;
+				while(sortHead!==null){
+					if(sortHead.val>curent.val){
+						//insert curent between parent and sortHead;
+						parent.next = curent;
+						curent.next = sortHead;
+						notInsertFlag = false;
+						break;
+					}else{
+						parent = sortHead;
+						sortHead = sortHead.next;
+					}
+				}
+				if(notInsertFlag){
+					parent.next = curent;
+					curent.next = null;
+				}
+				curent = next;
+				l.head = curent;
+			}
 		}
+		//remove the first temp node
+		if(l.head.val=='temp'){
+			l.head = l.head.next;
+		}
+		return l;
 	}
 }
