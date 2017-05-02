@@ -54,14 +54,17 @@ function delHeap(heap,val){
 			index = i;
 		}
 	}
-	if(index){
-		var replaceWithindex =index;
-		while(replaceWithindex<heap.length){
-			replaceWithindex = (2*replaceWithindex)+2;
-		}
+	debugger;
+	if(index!==undefined){
+		
+		var replaceWithindex =heap[heap.length-1];
+		
 		heap[index] = heap[replaceWithindex];
 
 		bDown(heap,index,replaceWithindex);
+
+		heap.splice(heap.length-1,1);
+		return heap;
 	}else{
 		return ;
 	}
@@ -74,6 +77,7 @@ function bDown(heap,index){
 	if(index<0 || index>heap.length){
 		return
 	}else{
+		debugger;
 		var lChild = (2*index)+1;
 		var rChild;
 		var replaceWithindex;
