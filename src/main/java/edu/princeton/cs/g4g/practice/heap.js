@@ -46,6 +46,7 @@ function bubbleUp(heap,i){
 		index	= saveIndex;
 	}
 }
+heap = [16,14,10,8,7,9,3,2,4,1];
 
 function delHeap(heap,val){
 	var index;
@@ -57,7 +58,7 @@ function delHeap(heap,val){
 	debugger;
 	if(index!==undefined){
 		
-		var replaceWithindex =heap[heap.length-1];
+		var replaceWithindex =heap.length-1;
 		
 		heap[index] = heap[replaceWithindex];
 
@@ -75,7 +76,7 @@ function bDown(heap,index){
 	//yes=>move index to point to parent and repeat check
 	//no=>switch items in index and replaceWithindex and move pointer to replacement index and continue
 	if(index<0 || index>heap.length){
-		return
+		return heap;
 	}else{
 		debugger;
 		var lChild = (2*index)+1;
@@ -91,7 +92,7 @@ function bDown(heap,index){
 			}
 		}else{
 			//no child
-			return;
+			return heap;
 		}
 
 		if(replaceWithindex){
@@ -112,8 +113,26 @@ function bDown(heap,index){
 			}
 		}
 	}
+	return heap;
 }
 
+function maxHeap(heap){
+for(var i=0;i<heap.length;i++){
+	bDown(heap,i);
+}
+return heap;
+}
+
+function heapSort(heap){
+	var sortArray=[];
+	//build max heap
+	maxHeap(heap);
+	while(heap.length>0){
+		sortArray.push(heap[0]);
+		delHeap(heap,heap[0]);
+	}
+	return sortArray;
+}
 /*function deleteHeap(heap,val){
 	var node,nodeObject;
 	nodeObject = getNode(heap,val);
