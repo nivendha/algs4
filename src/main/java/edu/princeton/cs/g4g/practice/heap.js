@@ -47,7 +47,70 @@ function bubbleUp(heap,i){
 	}
 }
 
-function deleteHeap(heap,val){
+function delHeap(heap,val){
+	var index;
+	for(var i=0;i<heap.length && index===undefined;i++){
+		if(heap[i]==val){
+			index = i;
+		}
+	}
+	if(index){
+		var replaceWithindex =index;
+		while(replaceWithindex<heap.length){
+			replaceWithindex = (2*replaceWithindex)+2;
+		}
+		heap[index] = heap[replaceWithindex];
+
+		bDown(heap,index,replaceWithindex);
+	}else{
+		return ;
+	}
+}
+
+function bDown(heap,index){
+	//check left and right child, if exist , get bigtest of two and if it is less than parent value
+	//yes=>move index to point to parent and repeat check
+	//no=>switch items in index and replaceWithindex and move pointer to replacement index and continue
+	if(index<0 || index>heap.length){
+		return
+	}else{
+		var lChild = (2*index)+1;
+		var rChild;
+		var replaceWithindex;
+		//replaceWithindex => bigest of the child index
+		
+		if(heap[lChild]){
+			replaceWithindex = lChild;
+			rChild = (2*index)+2;
+			if(heap[rChild]){
+				replaceWithindex = heap[lChild] > heap [rChild]?lChild:rChild;
+			}
+		}else{
+			//no child
+			return;
+		}
+
+		if(replaceWithindex){
+			//check wether parent or child is big
+
+			if(heap[index]>heap[replaceWithindex]){
+				//parent big so go up the tree to check on
+				var parentIndex;
+				parentIndex = Math.ceil(index/2)-1
+				bDown(heap,parentIndex);
+			}else{
+				//replace the nodes and go doen the tree
+				var temp = heap[index];
+				heap[index] = heap[replaceWithindex];
+				heap[replaceWithindex] = temp;
+
+				bDown(heap,replaceWithindex);
+			}
+		}
+	}
+}
+
+/*function deleteHeap(heap,val){
 	var node,nodeObject;
 	nodeObject = getNode(heap,val);
 	debugger;
@@ -111,5 +174,5 @@ function bubbleDown(heap,parentNode,direction,replaceNodeParent){
 	debugger;
 	
 	
-}
+}*/
 
