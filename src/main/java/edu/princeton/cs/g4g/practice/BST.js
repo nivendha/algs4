@@ -16,6 +16,7 @@ BST.prototype.insert = function(key,val,curent){
 	if(!key){
 		return;
 	}
+
 	debugger;
 	if(this.head === null){
 		var node = new this.node(key,val);
@@ -51,27 +52,37 @@ BST.prototype.insert = function(key,val,curent){
 
 BST.prototype.inOrder = function(node){
 	debugger;
-	if((this.head || node) === null){
+	if(this.head === null || node === null){
 		return;
 	}
 	var ptr = (typeof node==="undefined")?this.head:node;
-	var curent = ptr;
-	if(ptr.left!==null){
-		ptr = ptr.left;
-		this.inOrder(ptr);
-		
-			if(ptr.right!==null){
-				ptr = ptr.right;
-				this.inOrder(ptr);
-				return;
-			}else{
-				console.log(ptr.val);
-				return;
-			}
-	}else{
-		console.log(ptr.val);
+
+	this.inOrder(ptr.left);
+	console.log(ptr.val);
+	this.inOrder(ptr.right);
+}
+BST.prototype.preOrder = function(node){
+	debugger;
+	if(this.head === null || node === null){
 		return;
 	}
+	var ptr = (typeof node==="undefined")?this.head:node;
+
+	console.log(ptr.val);
+	this.inOrder(ptr.left);
+	this.inOrder(ptr.right);
+}
+BST.prototype.postOrder = function(node){
+	debugger;
+	if(this.head === null || node === null){
+		return;
+	}
+	var ptr = (typeof node==="undefined")?this.head:node;
+
+	this.inOrder(ptr.left);
+	this.inOrder(ptr.right);
+	console.log(ptr.val);
+	
 }
 
 var tree = new BST();
